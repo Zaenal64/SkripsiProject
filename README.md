@@ -1,5 +1,2 @@
 # SkripsiProject
-GAME BUAT SKRIPSI.
-Artha 
-Jenal
-Aldi
+GAME BUAT SKRIPSI
