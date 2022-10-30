@@ -1,2 +1,2 @@
 # SkripsiProject
-GAME BUAT SKRIPSI.
+GAME BUAT SKRIPSI
