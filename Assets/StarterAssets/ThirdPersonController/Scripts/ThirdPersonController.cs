@@ -87,6 +87,8 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
+        //attcak
+
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
@@ -109,6 +111,14 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        public bool disable = false;
+
+        //attack
+        public float cooldownTime = 0.7f;
+        private float nextFireTime = 0f;
+        public static int noOfClicks = 0;
+        float lastClickedTime = 0;
+        float maxComboDelay = 1;
 
         private bool IsCurrentDeviceMouse
         {
@@ -155,11 +165,38 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
+            if(!disable){
             JumpAndGravity();
             GroundedCheck();
             Move();
+            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
+                {
+                    _animator.SetBool("hit1", false);
+                }
+                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
+                {
+                    _animator.SetBool("hit2", false);
+                }
+                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit3"))
+                {
+                    _animator.SetBool("hit3", false);
+                    noOfClicks = 0;
+                }
+
+            if (Time.time - lastClickedTime > maxComboDelay)
+                {
+                    noOfClicks = 0;
+                }
+            if (Time.time > nextFireTime)
+                {
+                    // Check for mouse input
+                        Attack();
+                }
+            }
+            
         }
+
+        
 
         private void LateUpdate()
         {
@@ -220,6 +257,8 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
+
+            
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
@@ -277,7 +316,7 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
-        }
+    }
 
         private void JumpAndGravity()
         {
@@ -387,6 +426,36 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+        private void Attack()
+        {
+           if(_input.attack && Grounded && !_input.sprint){
+            lastClickedTime = Time.time;
+            noOfClicks++;
+            if (noOfClicks == 1)
+            {
+                _animator.SetBool("hit1", _input.attack);
+            }
+            noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
+    
+            if (noOfClicks >= 2 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
+            {
+                _animator.SetBool("hit1", false);
+                _animator.SetBool("hit2", _input.attack);
+            }
+            if (noOfClicks >= 3 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
+            {
+                _animator.SetBool("hit2", false);
+                _animator.SetBool("hit3", _input.attack);
+            }
+            
+           }else{
+            _animator.SetBool("hit1", false);
+            _animator.SetBool("hit2", false);
+            _animator.SetBool("hit3", false);
+            //canMove = true;
+           }
+            
         }
     }
 }
