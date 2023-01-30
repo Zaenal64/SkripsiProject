@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - CinemachineTarget
+  - Enemy
+  - WayPoints
+  - Sword
   layers:
   - Default
   - TransparentFX

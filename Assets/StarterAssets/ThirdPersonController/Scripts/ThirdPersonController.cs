@@ -87,7 +87,10 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
-        //attcak
+        //attack
+        public GameObject sword;
+        public bool isAttack;
+
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -430,21 +433,25 @@ namespace StarterAssets
         private void Attack()
         {
            if(_input.attack && Grounded && !_input.sprint){
+            
             lastClickedTime = Time.time;
             noOfClicks++;
             if (noOfClicks == 1)
             {
+                attackStart();
                 _animator.SetBool("hit1", _input.attack);
             }
             noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
     
             if (noOfClicks >= 2 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
             {
+                attackStart();
                 _animator.SetBool("hit1", false);
                 _animator.SetBool("hit2", _input.attack);
             }
             if (noOfClicks >= 3 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
             {
+                attackStart();
                 _animator.SetBool("hit2", false);
                 _animator.SetBool("hit3", _input.attack);
             }
@@ -453,9 +460,23 @@ namespace StarterAssets
             _animator.SetBool("hit1", false);
             _animator.SetBool("hit2", false);
             _animator.SetBool("hit3", false);
+            attackStop();
             //canMove = true;
            }
             
+        }
+
+        public void attackStart(){
+            isAttack = true;
+            sword = GameObject.FindGameObjectWithTag("Sword");
+            sword.GetComponent<Collider>().enabled = true;
+
+        }
+
+        public void attackStop(){
+            isAttack = false;
+            sword = GameObject.FindGameObjectWithTag("Sword");
+            sword.GetComponent<Collider>().enabled = false;
         }
     }
 }
