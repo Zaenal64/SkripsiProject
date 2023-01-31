@@ -7,7 +7,11 @@ using UnityEngine.Events;
 public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
+
+    public static bool Inven = false;
     public GameObject PauseMenuCanvas;
+
+    public GameObject InventoryCanvas;
     public UnityEvent GamePaused;
     public UnityEvent GameResumed;
 
@@ -36,6 +40,14 @@ public class PauseMenu : MonoBehaviour
             }
             
         }
+        if(Input.GetKeyDown(KeyCode.I)){
+            
+                if(Inven){
+                    InventoryClose();
+                }else{
+                    InventoryOpen();
+                }
+        }
     }
 
      public void Stop()
@@ -60,5 +72,20 @@ public class PauseMenu : MonoBehaviour
     {
         //SceneManager.LoadScene("MainMenu");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void InventoryOpen(){
+        InventoryCanvas.SetActive(true);
+        GamePaused.Invoke();
+        //Time.timeScale = 0;
+        Inven = true;
+        
+    }
+    public void InventoryClose(){
+        InventoryCanvas.SetActive(false);
+        GameResumed.Invoke();
+        //Time.timeScale = 1;
+        Inven = false;
+        
     }
 }

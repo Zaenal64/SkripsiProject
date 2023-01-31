@@ -50,6 +50,9 @@ public class Attack : MonoBehaviour
         }
     }
  
+ void OnMove(){
+    
+ }
     void OnAttack()
     {
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.

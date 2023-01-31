@@ -90,6 +90,7 @@ namespace StarterAssets
         //attack
         public GameObject sword;
         public bool isAttack;
+        public bool canMove = true;
 
 
         // timeout deltatime
@@ -175,19 +176,23 @@ namespace StarterAssets
             if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
                 {
                     _animator.SetBool("hit1", false);
+                    canMove=true;
                 }
                 if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
                 {
                     _animator.SetBool("hit2", false);
+                    canMove=true;
                 }
                 if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit3"))
                 {
                     _animator.SetBool("hit3", false);
+                    canMove=true;
                     noOfClicks = 0;
                 }
 
             if (Time.time - lastClickedTime > maxComboDelay)
                 {
+                    canMove = true;
                     noOfClicks = 0;
                 }
             if (Time.time > nextFireTime)
@@ -253,6 +258,8 @@ namespace StarterAssets
 
         private void Move()
         {
+            if(canMove == true){
+
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -319,7 +326,8 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
-    }
+            }
+            }
 
         private void JumpAndGravity()
         {
@@ -438,6 +446,7 @@ namespace StarterAssets
             noOfClicks++;
             if (noOfClicks == 1)
             {
+                canMove=false;
                 attackStart();
                 _animator.SetBool("hit1", _input.attack);
             }
@@ -445,12 +454,14 @@ namespace StarterAssets
     
             if (noOfClicks >= 2 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
             {
+                canMove=false;
                 attackStart();
                 _animator.SetBool("hit1", false);
                 _animator.SetBool("hit2", _input.attack);
             }
             if (noOfClicks >= 3 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
             {
+                canMove=false;
                 attackStart();
                 _animator.SetBool("hit2", false);
                 _animator.SetBool("hit3", _input.attack);
