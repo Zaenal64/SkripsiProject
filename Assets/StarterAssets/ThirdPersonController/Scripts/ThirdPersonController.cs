@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -168,8 +169,11 @@ namespace StarterAssets
 
         private void Update()
         {
+            if(EventSystem.current.IsPointerOverGameObject())
+                return;
             _hasAnimator = TryGetComponent(out _animator);
             if(!disable){
+            
             JumpAndGravity();
             GroundedCheck();
             Move();

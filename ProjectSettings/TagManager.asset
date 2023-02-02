@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - WayPoints
   - Sword
+  - Pickable
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Door
   - 
-  - 
-  - 
+  - Interactable
   - ground
   - 
   - 
