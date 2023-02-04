@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
 
     public GameObject portalLevel2;
 
+    public GameObject[] itemDrops;
+    public GameObject canvas;
+
     // Start is called before the first frame update
 
     private void Update() {
@@ -23,8 +26,13 @@ public class Enemy : MonoBehaviour
             //play death animation
             AudioManager.instance.Play("Death");
             animator.SetTrigger("die");
-            GetComponent<Collider>().enabled = false;
+            
+            canvas.SetActive(false);
             portalLevel2.SetActive(true);
+            foreach(GameObject items in itemDrops){
+                items.SetActive(true);
+            }
+            GetComponent<Collider>().enabled = false;
         }
         else{
             //play get hit anime

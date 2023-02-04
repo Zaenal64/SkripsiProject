@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class DontDestroy : MonoBehaviour
     //     instance = this;
     //     DontDestroyOnLoad(this.gameObject);
     // }
+    void Update(){
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        if(scene == 0){
+            Destroy(this.gameObject);
+        }else{
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        }
+        
+    }
 
     private void Start() {
         if (instance != null) 
@@ -27,6 +38,8 @@ public class DontDestroy : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        
+        
     }
     
 

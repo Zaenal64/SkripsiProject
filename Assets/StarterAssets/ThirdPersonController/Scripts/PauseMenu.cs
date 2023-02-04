@@ -71,7 +71,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenuButton()
     {
         //SceneManager.LoadScene("MainMenu");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void InventoryOpen(){
