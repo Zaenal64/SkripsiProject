@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public void Play(){
         //Cursor.visible = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Playground", LoadSceneMode.Single);
     }
 
     public void Quit(){
