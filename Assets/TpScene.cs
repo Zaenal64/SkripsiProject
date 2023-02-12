@@ -9,9 +9,12 @@ using UnityEngine.InputSystem;
 public class TpScene : MonoBehaviour
 {
     CharacterController characterController;
-    public Transform player, spawner;
+    //public Transform player;
+    public Transform spawner;
     public GameObject chara;
     public int indexLevel;
+
+    public string exitName;
 
     // private void Start() {
     //     characterController = gameObject.GetComponent<CharacterController>();
@@ -21,9 +24,10 @@ public class TpScene : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
 
         // StartCoroutine("Teleport");
+        PlayerPrefs.SetString("LastExitName",exitName);
         chara.SetActive(false);
-        SceneManager.LoadScene(indexLevel);
-        player.position = spawner.position;
+        SceneManager.LoadSceneAsync(indexLevel);
+        //player.position = spawner.position;
         chara.SetActive(true);
         //StartCoroutine("Teleport");
         
