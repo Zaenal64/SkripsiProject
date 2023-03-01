@@ -32,6 +32,11 @@ public class Interactor : MonoBehaviour
                 if(!_interactionPromptUi.isDisplayed) _interactionPromptUi.SetUp(_interactable.InteractionPrompt);
                 if(Keyboard.current.fKey.wasPressedThisFrame){
                     _interactable.Interact(this);
+                    
+                }
+                if(Mouse.current.leftButton.wasPressedThisFrame){
+                    
+                    _interactable.Interact(this);
                 }
                 
             }
