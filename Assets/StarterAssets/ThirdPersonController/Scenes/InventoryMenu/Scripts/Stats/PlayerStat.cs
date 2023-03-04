@@ -34,6 +34,7 @@ public class PlayerStat : CharacterStats
 	public override void Die(){
 
 		base.Die();
+		currentHealth = maxHealth;
 		PlayerManager.instance.KillPlayer();
 	}
 
