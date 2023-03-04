@@ -7,14 +7,16 @@ public class CharacterStats : MonoBehaviour
 {
     // Start is called before the first frame update
     public int maxHealth = 100;
-    public int currentHealth{get; private set;}
+    public int currentHealth{get; set;}
     public Stat damage;
     public Stat armor;
     public Slider healthBar;
+    public TextMeshProUGUI useText;
     
 
     private void Awake() {
         currentHealth = maxHealth;
+        useText.SetText(currentHealth.ToString());
     }
     private void Update() {
         healthBar.value = currentHealth;
@@ -22,6 +24,7 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(10);
             Debug.Log(currentHealth.ToString());
         }
+        useText.SetText(currentHealth.ToString());
     }
 
     public void TakeDamage(int damage)
