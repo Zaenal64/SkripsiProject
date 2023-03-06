@@ -26,7 +26,7 @@ public class CharacterCombat : MonoBehaviour
         if(Cooldown <= 0f){
             this.opponentStats = opponentStats;
             Cooldown = 1f/attackSpeed;
-            StartCoroutine(DoDamage(opponentStats,0.05f));
+            StartCoroutine(DoDamage(opponentStats,1f));
             if(onAttack != null){
                 
             onAttack();
