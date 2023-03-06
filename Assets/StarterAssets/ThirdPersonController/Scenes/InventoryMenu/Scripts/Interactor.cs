@@ -30,13 +30,13 @@ public class Interactor : MonoBehaviour
             _interactable = _colliders[0].GetComponent<IInteractable>();
             if(_interactable != null ){
                 if(!_interactionPromptUi.isDisplayed) _interactionPromptUi.SetUp(_interactable.InteractionPrompt);
-                if(Keyboard.current.fKey.wasPressedThisFrame){
+                if(Keyboard.current.fKey.wasPressedThisFrame && !GameObject.FindGameObjectWithTag("Enemy")){
                     _interactable.Interact(this);
                     
                 }
-                if(Mouse.current.leftButton.wasPressedThisFrame){
+                if(Input.GetMouseButton(0) && GameObject.FindGameObjectWithTag("Enemy")){
                     
-                    _interactable.Interact(this);
+                    StartCoroutine(InteractEnemy(_interactable, 1f));
                 }
                 
             }
@@ -50,5 +50,11 @@ public class Interactor : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_interactionPoint.position, _interactionPointRadius);
+    }
+
+    IEnumerator InteractEnemy(IInteractable _interactable, float delay){
+        yield return new WaitForSeconds(delay);
+        _interactable.Interact(this);
+        yield return new WaitForSeconds(delay);
     }
 }

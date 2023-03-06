@@ -8,7 +8,8 @@ public class EnemyStats : CharacterStats
     public override void Die()
     {
         base.Die();
+        XPManager.instance.AddXP(100);
         //Add ragdoll
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

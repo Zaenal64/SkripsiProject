@@ -14,7 +14,6 @@ public class PlayerStat : CharacterStats
 		EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;
 	}
 
-    
     // Update is called once per frame
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
 	{
@@ -29,6 +28,12 @@ public class PlayerStat : CharacterStats
 			damage.RemoveModifier(oldItem.armorModifier);
 		}
 
+	}
+
+	public void IncreaseHealth(int level){
+		maxHealth += Mathf.RoundToInt((currentHealth * 0.01f) * ((100 - level) * 0.1f));
+        currentHealth = maxHealth;
+		Debug.Log(currentHealth);
 	}
 
 	public override void Die(){
