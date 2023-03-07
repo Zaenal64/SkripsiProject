@@ -127,7 +127,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public string lastSceneGameData() 
     {
-        return gameData.buildIndex;
+        return this.gameData.buildIndex;
     }
     private IEnumerator AutoSave() 
     {

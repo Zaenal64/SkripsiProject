@@ -30,7 +30,7 @@ public class Interactor : MonoBehaviour
             _interactable = _colliders[0].GetComponent<IInteractable>();
             if(_interactable != null ){
                 if(!_interactionPromptUi.isDisplayed) _interactionPromptUi.SetUp(_interactable.InteractionPrompt);
-                if(Keyboard.current.fKey.wasPressedThisFrame && !GameObject.FindGameObjectWithTag("Enemy")){
+                if(Keyboard.current.fKey.wasPressedThisFrame){
                     _interactable.Interact(this);
                     
                 }

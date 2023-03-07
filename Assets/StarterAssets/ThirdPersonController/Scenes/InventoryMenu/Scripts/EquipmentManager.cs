@@ -10,6 +10,11 @@ public class EquipmentManager : MonoBehaviour
     
 
     private void Awake() {
+        if(instance != null){
+            Debug.LogWarning("lebih dari satu Equipment manager ditemukan. Hancurkan yang terbaru");
+            Destroy(this.gameObject);
+            return;
+        }
         instance=this;
     }
     #endregion
