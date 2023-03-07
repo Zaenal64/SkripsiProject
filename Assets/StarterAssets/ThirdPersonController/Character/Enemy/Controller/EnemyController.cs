@@ -29,13 +29,19 @@ public class EnemyController : MonoBehaviour
                 //attack
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 if(targetStats !=null){
-                    combat.Attack(targetStats);
+                    StartCoroutine(DoAttack(targetStats, 1));
                 }
                 
                 //menghadap target
                 FaceTarget();
             }
         }
+    }
+
+    IEnumerator DoAttack(CharacterStats targetStats, float delay){
+        yield return new WaitForSeconds(delay);
+        combat.Attack(targetStats);
+        yield return new WaitForSeconds(delay);
     }
 
     void FaceTarget(){

@@ -90,4 +90,9 @@ public class PauseMenu : MonoBehaviour
         Inven = false;
         
     }
+
+    public void Quit(){
+        DataPersistenceManager.instance.SaveGame();
+        Application.Quit();
+    }
 }

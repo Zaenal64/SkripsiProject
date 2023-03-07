@@ -2,42 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* This resorts combat for all characters. */
+
 [RequireComponent(typeof(CharacterStats))]
-public class CharacterCombat : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public float attackSpeed = 1f;
-    private float Cooldown = 0f;
+public class CharacterCombat : MonoBehaviour {
 
-    public event System.Action onAttack;
-    CharacterStats myStats;
-    CharacterStats opponentStats;
-    void Start()
-    {
-        myStats = GetComponent<CharacterStats>();
-    }
+	public float attackRate = 1f;
+	private float attackCountdown = 0f;
 
-    private void Update() {
-        Cooldown -= Time.deltaTime;
-    }
+	public event System.Action OnAttack;
 
-    // Update is called once per frame
-    public void Attack(CharacterStats opponentStats){
-        if(Cooldown <= 0f){
-            this.opponentStats = opponentStats;
-            Cooldown = 1f/attackSpeed;
-            StartCoroutine(DoDamage(opponentStats,1f));
-            if(onAttack != null){
-                
-            onAttack();
-            }
-        }
-        
-    }
+	CharacterStats myStats;
+	CharacterStats enemyStats;
 
-    IEnumerator DoDamage(CharacterStats stats, float delay){
-        yield return new WaitForSeconds(delay);
-        stats.TakeDamage(myStats.damage.GetValue());
-        yield return new WaitForSeconds(delay);
-    }
+
+	void Start ()
+	{
+		myStats = GetComponent<CharacterStats>();
+	}
+
+	void Update ()
+	{
+		attackCountdown -= Time.deltaTime;
+	}
+
+	public void Attack (CharacterStats enemyStats)
+	{
+		if (attackCountdown <= 0f)
+		{
+			this.enemyStats = enemyStats;
+			Debug.Log(enemyStats);
+			attackCountdown = 1f / attackRate;
+
+			StartCoroutine(DoDamage(enemyStats,.05f));
+
+			if (OnAttack != null) {
+				OnAttack ();
+			}
+		}
+	}
+
+
+	IEnumerator DoDamage(CharacterStats stats, float delay) {
+		//print ("Start");
+		yield return new WaitForSeconds (delay);
+
+		//Debug.Log (transform.name + " swings for " + myStats.damage.GetValue () + " damage");
+		enemyStats.TakeDamage (myStats.damage.GetValue());
+
+
+
+
+	}
+
+
 }

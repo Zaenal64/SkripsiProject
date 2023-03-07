@@ -12,6 +12,8 @@ public class CharacterStats : MonoBehaviour
     public Stat armor;
     public Slider healthBar;
     public TextMeshProUGUI useText;
+
+    //public Animator animator;
     
 
     private void Awake() {

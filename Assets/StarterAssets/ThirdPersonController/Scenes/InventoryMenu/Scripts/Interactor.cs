@@ -34,10 +34,14 @@ public class Interactor : MonoBehaviour
                     _interactable.Interact(this);
                     
                 }
-                if(Input.GetMouseButton(0) && GameObject.FindGameObjectWithTag("Enemy")){
+                if(gameObject.CompareTag("Enemy")){
+                    _interactionPromptUi.close();
+                    if(Input.GetMouseButton(0) && GameObject.FindGameObjectWithTag("Enemy")){
                     
                     StartCoroutine(InteractEnemy(_interactable, 1f));
                 }
+                }
+
                 
             }
         }
