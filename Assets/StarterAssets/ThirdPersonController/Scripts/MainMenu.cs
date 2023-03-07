@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,10 +12,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
     GameData data;
+    public AudioSource soundSource;
 
     private void Start() 
     {
         DisableButtonsDependingOnData();
+        if(soundSource != null)
+        soundSource.Play();
+        
     }
 
     private void DisableButtonsDependingOnData() 

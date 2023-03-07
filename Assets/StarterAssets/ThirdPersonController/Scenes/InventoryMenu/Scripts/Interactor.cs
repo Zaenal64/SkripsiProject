@@ -34,7 +34,7 @@ public class Interactor : MonoBehaviour
                     _interactable.Interact(this);
                     
                 }
-                if(gameObject.CompareTag("Enemy")){
+                if(GameObject.FindGameObjectWithTag("Enemy")){
                     _interactionPromptUi.close();
                     if(Input.GetMouseButton(0) && GameObject.FindGameObjectWithTag("Enemy")){
                     
