@@ -11,9 +11,9 @@ public class EnemyController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     CharacterCombat combat;
-    void Start()
+    void Awake()
     {
-        target = PlayerManager.instance.player.transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
     }
