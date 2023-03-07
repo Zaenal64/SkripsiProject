@@ -2139,7 +2139,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &392314576 stripped
 Transform:
@@ -2516,6 +2516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
+  animator: {fileID: 0}
 --- !u!114 &490793663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2630,7 +2631,7 @@ Transform:
   - {fileID: 1562131983}
   - {fileID: 1189736966}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &508952947
 Mesh:
@@ -4567,6 +4568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 8570783012303003569, guid: ea87131d00bf4464a87ae420cf069383, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9059651533279692072, guid: ea87131d00bf4464a87ae420cf069383, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5454,7 +5459,7 @@ Transform:
   - {fileID: 132651115}
   - {fileID: 5602115288968606066}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1056113790
 PrefabInstance:
@@ -6349,7 +6354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1204915408
 PrefabInstance:
@@ -6500,7 +6505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage:
-    baseValue: 5
+    baseValue: 10
   armor:
     baseValue: 0
   healthBar: {fileID: 998174638}
@@ -6522,6 +6527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
+  animator: {fileID: 5866666020697493709}
 --- !u!1001 &1276099061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7272,65 +7278,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &1348149277
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1348149278}
-  - component: {fileID: 1348149279}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1348149278
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348149277}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 107.813675, y: 101.53887, z: 132.45494}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1348149279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348149277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf1246b070b66c4e8cdc39b2a7ffcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: TakeDamage
-    clip: {fileID: 8300000, guid: d94a841f9ca2e994597a026b5a7aaaea, type: 3}
-    mixer: {fileID: 0}
-    volume: 0.471
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Death
-    clip: {fileID: 8300000, guid: c139865a15d62a64592c61d8e6d6a6f6, type: 3}
-    mixer: {fileID: 0}
-    volume: 0.471
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
 --- !u!1001 &1365476458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7845,7 +7792,7 @@ Transform:
   - {fileID: 1639540259}
   - {fileID: 542753596}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1552376494
 MonoBehaviour:
@@ -7894,6 +7841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
+  animator: {fileID: 0}
 --- !u!1 &1556650362
 GameObject:
   m_ObjectHideFlags: 0
@@ -9148,7 +9096,7 @@ Transform:
   - {fileID: 604777816}
   - {fileID: 1746646180}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -84.724, z: 0}
 --- !u!1001 &1725521215
 PrefabInstance:

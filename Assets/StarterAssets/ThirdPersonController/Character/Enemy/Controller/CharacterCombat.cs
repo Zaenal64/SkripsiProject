@@ -14,6 +14,7 @@ public class CharacterCombat : MonoBehaviour {
 
 	CharacterStats myStats;
 	CharacterStats enemyStats;
+	public Animator animator;
 
 
 	void Start ()
@@ -46,7 +47,6 @@ public class CharacterCombat : MonoBehaviour {
 	IEnumerator DoDamage(CharacterStats stats, float delay) {
 		//print ("Start");
 		yield return new WaitForSeconds (delay);
-
 		//Debug.Log (transform.name + " swings for " + myStats.damage.GetValue () + " damage");
 		enemyStats.TakeDamage (myStats.damage.GetValue());
 
