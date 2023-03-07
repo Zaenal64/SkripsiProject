@@ -7,11 +7,22 @@ public class PlayerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public static PlayerScript instance;
-    void Start()
-    {
+    // void Start()
+    // {
         
+    //     if(instance != null){
+    //         Destroy(gameObject);
+    //     }
+    //     else{
+    //         instance = this;
+    //     }
+        
+    //     DontDestroyOnLoad(gameObject);
+    // }
+
+    private void Awake() {
         if(instance != null){
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         else{
             instance = this;
@@ -20,13 +31,17 @@ public class PlayerScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         int scene = SceneManager.GetActiveScene().buildIndex;
         if(scene == 0){
             Debug.Log("scene"+ scene);
             Destroy(this.gameObject);
+            //this.gameObject.SetActive(false);
         }
+        // if(scene > 0){
+        //     this.gameObject.SetActive(true);
+        // }
     }
 }

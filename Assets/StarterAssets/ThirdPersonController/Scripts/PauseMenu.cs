@@ -70,8 +70,9 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        //SceneManager.LoadScene("MainMenu");
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        DataPersistenceManager.instance.SaveGame();
+            // load the main menu scene
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void InventoryOpen(){

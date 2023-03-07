@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -13,7 +14,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviour,IDataPersistence
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -169,6 +170,13 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.M)) 
+        {
+            // save the game anytime before loading a new scene
+            DataPersistenceManager.instance.SaveGame();
+            // load the main menu scene
+            SceneManager.LoadSceneAsync("MainMenu");
+        }
             if(EventSystem.current.IsPointerOverGameObject())
                 return;
             _hasAnimator = TryGetComponent(out _animator);
@@ -492,6 +500,18 @@ namespace StarterAssets
             isAttack = false;
             sword = GameObject.FindGameObjectWithTag("Sword");
             sword.GetComponent<Collider>().enabled = false;
+        }
+
+        public void LoadData(GameData data)
+        {
+           this.transform.position = data.playerPosition;
+           //SceneManager.LoadSceneAsync(data.buildIndex);
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.playerPosition = this.transform.position;
+            data.buildIndex = SceneManager.GetActiveScene().name;
         }
     }
 }

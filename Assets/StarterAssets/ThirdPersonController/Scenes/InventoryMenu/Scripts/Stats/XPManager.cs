@@ -25,7 +25,6 @@ public class XPManager : MonoBehaviour
     }
 
     public void AddXP(int xp){
-        level += 1;
         currentXP += xp;
         //naik level
         while(currentXP >= targetXP){

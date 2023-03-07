@@ -17,7 +17,8 @@ public class EnemyNew : MonoBehaviour, IInteractable
     public void Interact(Interactor interactor)
     {
         //Debug.Log("Interact with enemy");
-        CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
+        CharacterCombat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterCombat>();
+        //playerManager.player.GetComponent<CharacterCombat>();
        //attack enemy
        if(playerCombat != null){
         playerCombat.Attack(myStats);
