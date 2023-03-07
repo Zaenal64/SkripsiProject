@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class enemyAttack : StateMachineBehaviour
 {
-    Transform player;
+        Transform player;
+        CharacterCombat combat;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        player = GameObject.FindGameObjectWithTag("Player").transform;
+       combat = animator.GetComponent<CharacterCombat>();
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.LookAt(player);
-       float distance = Vector3.Distance(player.position, animator.transform.position);
+        Vector3 direction = (player.position - animator.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x,0,direction.z));
+        animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation,lookRotation,Time.deltaTime*5f);
+
+        CharacterStats targetStats = player.GetComponent<CharacterStats>();
+        combat.Attack(targetStats);
+
+        float distance = Vector3.Distance(player.position, animator.transform.position);
         if(distance > 3.5f)
         animator.SetBool("isAttacking", false);
     }

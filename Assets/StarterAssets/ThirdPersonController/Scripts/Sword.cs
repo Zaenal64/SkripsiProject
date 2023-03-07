@@ -19,10 +19,10 @@ public class Sword : MonoBehaviour
 
 
     // Update is called once per frame
-    private void OnTriggerEnter(Collider other) {
-             if(other.tag == "Enemy"){
-             Debug.Log("hit enemy");
-             other.GetComponent<Enemy>().TakeDamage(damageAmount);
-             }
-    }
+    // private void OnTriggerEnter(Collider other) {
+    //          if(other.tag == "Enemy"){
+    //          Debug.Log("hit enemy");
+    //          other.GetComponent<Enemy>().TakeDamage(damageAmount);
+    //          }
+    // }
 }

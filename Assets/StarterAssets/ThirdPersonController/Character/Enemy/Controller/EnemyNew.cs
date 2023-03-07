@@ -25,6 +25,11 @@ public class EnemyNew : MonoBehaviour, IInteractable
 
     }
     }
+    // IEnumerator DoAttack(CharacterStats myStats, float delay){
+    //     yield return new WaitForSeconds(delay);
+    //     myStats.Attack(targetStats);
+    //     yield return new WaitForSeconds(delay);
+    // }
     
     
 
