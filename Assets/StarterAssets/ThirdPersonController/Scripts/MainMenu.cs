@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
         // load the gameplay scene - which will in turn save the game because of
         // OnSceneUnloaded() in the DataPersistenceManager
         DataPersistenceManager.instance.SaveGame();
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadSceneAsync("Playground");
         
     }
@@ -47,6 +48,7 @@ public class MainMenu : MonoBehaviour
 
     public void Continue(){
         DisableMenuButtons();
+        PlayerPrefs.DeleteAll();
         // load the next scene - which will in turn load the game because of 
         // OnSceneLoaded() in the DataPersistenceManager
         //DataPersistenceManager.instance.SaveGame();
