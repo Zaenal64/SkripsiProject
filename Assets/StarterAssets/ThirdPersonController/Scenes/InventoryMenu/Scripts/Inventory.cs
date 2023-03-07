@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     private void Awake() {
         if(instance != null){
             Debug.LogWarning("lebih dari satu inventory ditemukan. Hancurkan yang terbaru");
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
             return;
         }
         instance = this;

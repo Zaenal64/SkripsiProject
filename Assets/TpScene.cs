@@ -24,10 +24,11 @@ public class TpScene : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
 
         // StartCoroutine("Teleport");
-        //DataPersistenceManager.instance.SaveGame();
+        
         PlayerPrefs.SetString("LastExitName",exitName);
         //chara.SetActive(false);
         SceneManager.LoadSceneAsync(indexLevel);
+        DataPersistenceManager.instance.SaveGame();
         //player.position = spawner.position;
         //chara.SetActive(true);
         //StartCoroutine("Teleport");

@@ -10,6 +10,11 @@ public class PlayerManager : MonoBehaviour
     #region Singleton
     public static PlayerManager instance;
     private void Awake() {
+        if(instance != null){
+            Debug.LogWarning("lebih dari satu playermanager ditemukan. Hancurkan yang terbaru");
+            Destroy(this.gameObject);
+            return;
+        }
         instance = this;
     }
 
