@@ -511,7 +511,7 @@ namespace StarterAssets
         public void SaveData(GameData data)
         {
             data.playerPosition = this.transform.position;
-            data.buildIndex = SceneManager.GetActiveScene().name;
+            data.buildIndex = SceneManager.GetActiveScene().buildIndex;
         }
     }
 }

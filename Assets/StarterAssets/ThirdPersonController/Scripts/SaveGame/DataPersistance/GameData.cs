@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public Vector3 playerPosition;
-    public string buildIndex;
+    public int buildIndex;
     public long lastUpdated;
 
     // the values defined in this constructor will be the default values
@@ -14,6 +14,6 @@ public class GameData
     public GameData() 
     {
         playerPosition = new Vector3(666,100,196);
-        buildIndex = "Playground";
+        buildIndex = 1;
     }
 }

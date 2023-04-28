@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
+    public GameObject HasGameDataCanvas;
     GameData data;
     public AudioSource soundSource;
 
@@ -30,8 +31,13 @@ public class MainMenu : MonoBehaviour
         }
     }
     public void Play(){
+        if(DataPersistenceManager.instance.HasGameData()){
+            HasGameDataCanvas.SetActive(true);
+            return;
+        }
         DisableMenuButtons();
         // create a new game - which will initialize our game data
+        
         DataPersistenceManager.instance.NewGame();
         // load the gameplay scene - which will in turn save the game because of
         // OnSceneUnloaded() in the DataPersistenceManager
@@ -62,5 +68,14 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueGameButton.interactable = false;
+    }
+
+    public void HasDataNewGame(){
+        DataPersistenceManager.instance.NewGame();
+        // load the gameplay scene - which will in turn save the game because of
+        // OnSceneUnloaded() in the DataPersistenceManager
+        DataPersistenceManager.instance.SaveGame();
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadSceneAsync("Playground");
     }
 }

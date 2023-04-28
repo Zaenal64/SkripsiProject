@@ -125,7 +125,7 @@ public class DataPersistenceManager : MonoBehaviour
         return gameData != null;
     }
 
-    public string lastSceneGameData() 
+    public int lastSceneGameData() 
     {
         return this.gameData.buildIndex;
     }
