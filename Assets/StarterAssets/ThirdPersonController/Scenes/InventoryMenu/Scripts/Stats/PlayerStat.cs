@@ -9,7 +9,7 @@ public class PlayerStat : CharacterStats
 {
     // Start is called before the first frame update
 	
-    
+	 
     public void Start () {
 		EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;
 	}
